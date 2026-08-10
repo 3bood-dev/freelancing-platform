@@ -59,4 +59,12 @@ contract FreelancingPlatform{
        });
        emit jobCreated(totalJobs, msg.sender , msg.value - listingFees);
     } 
+    
+    function getJobs() external view returns(Job[] memory){
+        Job[] memory allJobs = new Job[](totalJobs);
+        for (uint i = 1; i <= totalJobs; i++){
+            allJobs[i - 1] = jobs[i];
+        }
+        return allJobs;
+    }
     }
