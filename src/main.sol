@@ -44,4 +44,19 @@ contract FreelancingPlatform{
     constructor(){
         owner = msg.sender;
     }
+    
+    function createJob(string calldata _title, string calldata _description)external payable {
+        totalJobs++;
+        require(msg.value >= listingFees ,insufficientFunds());
+
+        jobs[totalJobs] = Job({
+            client: msg.sender,
+            bounty: msg.value - listingFees,
+            freelancer: address(0),
+            title: _title ,
+            description: _description ,
+            status: JobStatus.Open
+       });
+       emit jobCreated(totalJobs, msg.sender , msg.value - listingFees);
+    } 
     }
