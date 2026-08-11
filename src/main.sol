@@ -87,4 +87,7 @@ contract FreelancingPlatform{
         (bool success,)=payable(job.freelancer).call{value:job.bounty}(""); 
         require(success, "the transaction faild");
     } 
+     function listtingFees(uint256 _newValue)external onlyOwner{
+        listingFees = _newValue;
+    }
     }
