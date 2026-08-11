@@ -76,4 +76,15 @@ contract FreelancingPlatform{
 
         emit jobTaken(_jobId , theJob.freelancer);
     }
+    function completedJob(uint256 _jobId)external {
+        Job storage job = jobs[_jobId];
+        require(job.status == JobStatus.Taken, "the job not taken yet");
+        require(msg.sender == job.client, "you are not the owner of the job");
+        job.status = JobStatus.Completed;
+        reputations[job.freelancer] +=REPUTATION;
+
+        emit jobComplited(_jobId,job.freelancer);
+        (bool success,)=payable(job.freelancer).call{value:job.bounty}(""); 
+        require(success, "the transaction faild");
+    } 
     }
