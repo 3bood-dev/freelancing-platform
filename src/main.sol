@@ -67,4 +67,13 @@ contract FreelancingPlatform{
         }
         return allJobs;
     }
+     function acceptJob(uint256 _jobId)external {
+        Job storage theJob = jobs[_jobId];
+        require(theJob.status == JobStatus.Open , "Job is not available");
+        require(msg.sender != theJob.client , "the owner cant take the Job");
+        theJob.freelancer = msg.sender;
+        theJob.status = JobStatus.Taken;
+
+        emit jobTaken(_jobId , theJob.freelancer);
+    }
     }

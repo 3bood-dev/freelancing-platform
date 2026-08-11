@@ -94,6 +94,19 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "_jobId",
+						"type": "uint256"
+					}
+				],
+				"name": "acceptJob",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "string",
 						"name": "_title",
 						"type": "string"
@@ -285,11 +298,11 @@
 	},
 	"sources": {
 		"src/main.sol": {
-			"keccak256": "0xdbc82ff6c0ba4578bf06b8f25919ca76c8ec4a2b6137146849f4159064a1335c",
+			"keccak256": "0xa0dfef8a213260cfdc1dca918ae0a142e48014356c2669288d299afc25ad6a88",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://33caed5ff00478b677c5517bca0fa6e6446ea79d94a0c12d3daf18e44241f563",
-				"dweb:/ipfs/QmbnRqjaiDATafNgZhpdoQg1eZcNs8No1Vgvq6kLgkasp5"
+				"bzz-raw://b79529f904b82bda2b6891f8a723114d6ccf36590bbe6aabe8c3d3533e7fa42f",
+				"dweb:/ipfs/QmcNfn6ezZYE6JT8DkSLriXpL4zbySsdi54TbkLuuF5doc"
 			]
 		}
 	},
