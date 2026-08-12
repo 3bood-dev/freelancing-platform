@@ -103,4 +103,10 @@ contract FreelancingPlatform{
         (bool success, ) = payable(job.client).call{value: job.bounty}("");
         require(success, "refund transfer failed");
     }
+    function withdrawListingFees(uint256 _amount) external onlyOwner {
+        require(_amount <= address(this).balance, "insufficient platform balance");
+
+        (bool success, ) = payable(owner).call{value: _amount}("");
+        require(success, "withdrawal failed");
+    }
 }
