@@ -93,4 +93,14 @@ contract FreelancingPlatform{
     function getBalance() external view returns(uint256){
         return address(this).balance;
     }
+    function cancelJob(uint256 _jobId) external {
+        Job storage job = jobs[_jobId];
+        require(msg.sender == job.client, "you are not the owner of the job");
+        require(job.status == JobStatus.Open, "job cannot be cancelled");
+
+        job.status = JobStatus.Cancelled;
+
+        (bool success, ) = payable(job.client).call{value: job.bounty}("");
+        require(success, "refund transfer failed");
+    }
 }
