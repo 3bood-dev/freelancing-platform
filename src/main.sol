@@ -109,4 +109,11 @@ contract FreelancingPlatform{
         (bool success, ) = payable(owner).call{value: _amount}("");
         require(success, "withdrawal failed");
     }
+    function submitWork(uint256 _jobId) external {
+        Job storage job = jobs[_jobId];
+        require(msg.sender == job.freelancer, "you are not assigned to this job");
+        require(job.status == JobStatus.Taken, "job is not active");
+
+        job.status = JobStatus.Pending;
+    }
 }
